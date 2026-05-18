@@ -249,7 +249,7 @@ function Sidebar({ collapsed, currentPage, onPageChange, onLogout }) {
       {/* logo */}
       <div className='px-6 py-4 border-b border-slate-300/50 dark:border-slate-900'>
         <div className='flex items-center space-x-3'>
-          <img src='/logo.jpg' alt='ITS Logo' className='w-full h-10 shadow-lg' />
+          <img src='/logo.jpg' alt='ITS Logo' className='w-fit h-10 shadow-lg' />
           <div className={`overflow-hidden transition-all duration-300 ease-in-out ${collapsed ? 'w-0 opacity-0' : 'w-auto opacity-100'}`}>
             <h1 className='text-xl font-bold text-slate-900 dark:text-slate-100 whitespace-nowrap'>ITS</h1>
             <p className='text-xs font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap'>{getRoleDisplay()}</p>
