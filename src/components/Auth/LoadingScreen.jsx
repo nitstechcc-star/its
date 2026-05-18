@@ -130,7 +130,7 @@ export default function LoadingScreen() {
             className="relative w-24 h-24"
           >
             <img
-              src="/logo.svg"
+              src="/logo.jpg"
               alt="ITS Logo"
               className="w-full h-full"
             />
