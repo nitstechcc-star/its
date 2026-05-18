@@ -2,7 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts'
 
 
-const BACKEND_BASE = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000/api'
+const BACKEND_BASE = import.meta.env.MODE === 'development'
+  ? (import.meta.env.VITE_API_URL || 'http://localhost:8000/api/')
+  : (import.meta.env.VITE_API_URL_DEPLOY || 'https://its-backend-sv02.onrender.com')
+
+// REST endpoints are under /api, SSE under /sse
+const REST_BASE = `${BACKEND_BASE.replace(/\/+$/, '')}/api`
+const SSE_BASE = `${BACKEND_BASE.replace(/\/+$/, '')}`
+
 
 function TicketRecord() {
 
@@ -13,7 +20,8 @@ const [data, setData] = useState([])
     let es
 
     // initial snapshot
-    fetch(`${BACKEND_BASE}/api/violations/`)
+    fetch(`${REST_BASE}/violations/`)
+
       .then((res) => res.json())
       .then((json) => {
         if (json && json.data) setData(json.data)
@@ -22,7 +30,8 @@ const [data, setData] = useState([])
 
     // subscribe to SSE for live updates
     try {
-      es = new EventSource(`${BACKEND_BASE}/sse/violations/`)
+      es = new EventSource(`${SSE_BASE}/sse/violations/`)
+
       es.onmessage = (e) => {
         try {
           const parsed = JSON.parse(e.data)

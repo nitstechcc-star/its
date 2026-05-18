@@ -5,7 +5,12 @@ import { ArrowUpRight } from 'lucide-react'
 
 
 function Table() {
-  const endpoint = 'http://localhost:8000/api/officers/'
+  const endpointBase = import.meta.env.MODE === 'development'
+    ? (import.meta.env.VITE_API_URL || 'http://localhost:8000/api/')
+    : (import.meta.env.VITE_API_URL_DEPLOY || 'https://its-backend-sv02.onrender.com')
+
+  const endpoint = `${endpointBase.replace(/\/+$/, '')}/api/officers/`
+
   const [officerData, setOfficerData] = useState([])
   const fetchData = async() => {
     console.log(fetchData)

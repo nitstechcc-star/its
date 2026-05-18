@@ -4,7 +4,15 @@ import axios from "axios";
 //const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/'
 
 const isDevelopment = import.meta.env.MODE === 'development'
-const baseURL = isDevelopment ? (import.meta.env.VITE_API_URL || 'http://localhost:8000/api/') : (import.meta.env.VITE_API_URL_DEPLOY || 'https://its-backend-sv02.onrender.com')
+const baseURL = isDevelopment
+  ? (import.meta.env.VITE_API_URL || 'http://localhost:8000/api/')
+  : (() => {
+      // expects VITE_API_URL_DEPLOY to be like https://its-backend-sv02.onrender.com
+      // and this file appends endpoints like `${baseURL}login/` => baseURL must end with /api/
+      const deploy = import.meta.env.VITE_API_URL_DEPLOY || 'https://its-backend-sv02.onrender.com'
+      return deploy.replace(/\/+$/, '') + '/api/'
+    })()
+
 
 const LOGIN_URL = `${baseURL}login/`
 const REFRESH_URL = `${baseURL}token/refresh/`
