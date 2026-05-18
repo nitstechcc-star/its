@@ -179,9 +179,9 @@ export default function LoginPage() {
             className="absolute top-8 left-8 flex items-center gap-3"
           >
             <img
-              src="/logo.svg"
+              src="/logo.jpg"
               alt="ITS Logo"
-              className="w-12 h-12"
+              className="w-fit h-12"
             />
           </motion.div>
 
