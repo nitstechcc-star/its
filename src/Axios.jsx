@@ -112,7 +112,7 @@ api.interceptors.response.use(
             } catch (refreshError) {
                 clearTokens()
                 // Redirect to login if refresh fails
-                window.location.href = '/login'
+                window.location.href = '/'
                 return Promise.reject(refreshError)
             }
         }
