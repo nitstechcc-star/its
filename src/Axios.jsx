@@ -4,7 +4,7 @@ import axios from "axios";
 //const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/'
 
 const isDevelopment = import.meta.env.MODE === 'development'
-const baseURL = isDevelopment ? (import.meta.env.VITE_API_URL || 'http://localhost:8000/api/') : (import.meta.env.VITE_API_URL_DEPLOY || 'https://its-backend-1.onrender.com/api/')
+const baseURL = isDevelopment ? (import.meta.env.VITE_API_URL || 'http://localhost:8000/api/') : (import.meta.env.VITE_API_URL_DEPLOY || 'https://its-backend-sv02.onrender.com')
 
 const LOGIN_URL = `${baseURL}login/`
 const REFRESH_URL = `${baseURL}token/refresh/`
